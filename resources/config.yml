@@ -1,0 +1,7 @@
+# PureChatExtention by Thunder33345
+#avaliable tags:
+#setting name: prefix, suffix1 suffix2
+#economyapi: ecoapi, mymoney
+tags: #Tags to enable *not case sensetive
+- "EconomyAPI"
+- ""
