@@ -33,10 +33,11 @@ class Loader extends PluginBase
       $tag = strtolower($tag);
       switch ($tag) {
         case "economyapi":
-          if (EconomyAPI::getInstance() !== null)
+          if (EconomyAPI::getInstance() !== null) {
             if (!$pc->registerCustomTag(new EconomyAPITag(), true, $detail))
               $this->getLogger()->notice("Failed to add EconomyAPI tag\n" . print_r($detail . true) . "\n");
-            else $this->getLogger()->notice("Failed to load EconomyAPI!\n");
+            else $this->getLogger()->notice("Successfully registered EconomyAPI tag");
+          } else $this->getLogger()->notice("Failed to load EconomyAPI!\n");
       }
     }
   }

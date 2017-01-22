@@ -1,7 +1,10 @@
 <?php
 /* Made By Thunder33345 */
 namespace Thunder33345\PureChatExtension\Tags;
-
+/**
+ * @name EconomyAPI
+ * @website https://github.com/onebone/EconomyS
+ */
 use _64FF00\PureChat\Tags\CustomTagInterface;
 use onebone\economyapi\EconomyAPI;
 use pocketmine\Player;
