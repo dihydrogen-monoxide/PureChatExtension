@@ -2,6 +2,22 @@
 #avaliable tags:
 #setting name: prefix, suffix1 suffix2
 #economyapi: ecoapi, mymoney
+#faction: name, rank, power
 tags: #Tags to enable *not case sensetive
 - "EconomyAPI"
-- ""
+- "Faction"
+faction:
+  #todo UNIMPLIMENTED, add more types of faction plugin structure support (more samples needed!)
+  type: "GenericOld"
+  plugin_name: "FactionsPro" #faction pugin's name (leave it if you dont know
+  name:
+    none: "" #when not in faction
+    exist: "%name%" #when in faction, %name% gets replaced with faction name
+  rank:
+    none: ""
+    member: "-"
+    officer: "*"
+    leader: "^"
+  power:
+    none: ""
+    exist: "%power%"

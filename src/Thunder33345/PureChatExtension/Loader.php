@@ -6,6 +6,7 @@ use _64FF00\PureChat\PureChat;
 use onebone\economyapi\EconomyAPI;
 use pocketmine\plugin\PluginBase;
 use Thunder33345\PureChatExtension\Tags\EconomyAPITag;
+use Thunder33345\PureChatExtension\Tags\Factions\GenericFactionTag;
 
 class Loader extends PluginBase
 {
@@ -38,6 +39,39 @@ class Loader extends PluginBase
               $this->getLogger()->notice("Failed to add EconomyAPI tag\n" . print_r($detail . true) . "\n");
             else $this->getLogger()->notice("Successfully registered EconomyAPI tag");
           } else $this->getLogger()->notice("Failed to load EconomyAPI!\n");
+          break;
+        case "faction":
+          $config = $this->getConfig()->get("faction");
+          $fac = $this->getServer()->getPluginManager()->getPlugin($config['plugin_name']);
+          if ($fac === null) {
+            $this->getLogger()->alert("Abort loading faction support... Cant find faction plugin, maybe try checking the name?");
+            break;
+          }
+          $functions = [
+            "name" => ["getPlayerFaction"],
+            "rank" => ["isLeader", "isOfficer", "isMember",],
+            "power" => ["getFactionPower"]
+          ];
+          $enable = [];
+          foreach ($functions as $subTag => $subFunctions) {
+            $disable = false;
+            $requiredFunctions = "";
+            foreach ($subFunctions as $subFunction) {
+              if (!is_callable([$fac, $subFunction])) {
+                $disable = true;
+                $requiredFunctions .= "$subFunction ";
+              }
+            }
+            if ($disable) {
+              $this->getLogger()->notice("Faction: \"$subTag\" is not supported!(\"$requiredFunctions\" missing)");
+              continue;
+            }
+            $enable[] = $subTag;
+          }
+          $this->getPureChat()->registerCustomTag(new GenericFactionTag($this->getServer(), $config, $enable));
+          break;
+        default:
+          $this->getLogger()->notice("Tag \"$tag\" does not exist");
       }
     }
   }
