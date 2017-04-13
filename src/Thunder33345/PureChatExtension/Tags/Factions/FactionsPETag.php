@@ -1,5 +1,11 @@
 <?php
 /* Made By Thunder33345 */
+
+/**
+ * @name FactionsPE
+ * @website https://github.com/BlockHorizons/FactionsPE
+ */
+
 namespace Thunder33345\PureChatExtension\Tags\Factions;
 
 use _64FF00\PureChat\Tags\CustomTagInterface;
