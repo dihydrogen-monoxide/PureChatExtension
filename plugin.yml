@@ -4,6 +4,7 @@ description: "Purechat Extension, Adds extra tags to purechat"
 version: "0.0.1"
 api: [1.13.0, 2.0.0, 3.0.0]
 # load: POSTWORLD need to make it last
+loadafter: [PurePerms, PureChat]
 author: Thunder33345
 website: https://github.com/
 depend: [PureChat]
