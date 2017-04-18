@@ -24,7 +24,8 @@ class Loader extends PluginBase
     $pc = $this->getServer()->getPluginManager()->getPlugin("PureChat");
     if($pc !== null) {
       if(!method_exists($pc,"registerCustomTag") OR !method_exists($pc,"applyCustomTags")) {
-        $this->getLogger()->alert("Incorrect/Incompatible Version Detected");
+        $this->getLogger()->alert("Incorrect/Incompatible PureChat Version Detected");
+        $this->getLogger()->alert("This plugin will ONLY work with PureChatReloaded Download Link: ".'https://github.com/dihydrogen-monoxide/PureChatReloaded');
         $this->getPluginLoader()->disablePlugin($this);
       }
     } else {
